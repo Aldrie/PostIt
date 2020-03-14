@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import Routes from 'routes';
 
 import lightTheme from 'styles/themes/light';
+// import darkTheme from 'styles/themes/dark';
 
 function App() {
   return (
