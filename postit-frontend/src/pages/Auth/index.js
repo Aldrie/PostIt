@@ -1,13 +1,16 @@
 import React from 'react';
 
 import {
-  Container
+	Container,
+	Box,
 } from './styles';
 
 const AuthPage = ({ children }) => {
 	return (
 		<Container>
-			{children}
+			<Box>
+				{children}
+			</Box>
 		</Container>
 	);
 }

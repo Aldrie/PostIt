@@ -1,9 +1,15 @@
 import React from 'react';
-import Routes from '../src/routes/index';
+import { ThemeProvider } from 'styled-components';
+
+import Routes from 'routes';
+
+import lightTheme from 'styles/themes/light';
 
 function App() {
   return (
-    <Routes />
+    <ThemeProvider theme={lightTheme}>
+			<Routes />
+		</ThemeProvider>
   );
 }
 
