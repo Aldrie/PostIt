@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
+
 require('dotenv/config');
 
 const userRoutes = require('./routes/users');
@@ -9,6 +11,7 @@ const postRoutes = require('./routes/posts');
 const server = express();
 
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 server.use(cors());
 
 mongoose.connect(process.env.MONGO_URL, { 
@@ -21,6 +24,16 @@ mongoose.connect(process.env.MONGO_URL, {
 
 server.use('/users', userRoutes);
 server.use('/posts', postRoutes);
+
+server.get('/files/:fileName', (req, res) => {
+	const { fileName } = req.params;
+
+	return res.sendFile(path.resolve(__dirname, '..', 'uploads', fileName), {}, (err) => {
+		if(err) {
+			res.sendStatus(404);
+		}
+	});
+});
 
 server.listen(process.env.PORT, () => {
 	console.log('\x1b[35mServer Running');

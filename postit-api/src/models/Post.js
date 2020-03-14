@@ -8,6 +8,7 @@ const PostSchema = new Schema({
 	author: {
 		type: Schema.Types.ObjectId,
 		required: true,
+		ref: 'Users',
 	}
 }, { timestamps: true });
 

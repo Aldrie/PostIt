@@ -2,29 +2,47 @@ const Posts = require('../models/Post');
 const Users = require('../models/User');
 
 exports.create = async (token, content) => {
-	const user = await Users.findOne({ token });
+	try {
+		const user = await Users.findOne({ token });
 
-	if(user) {
-		return await Posts.create({ content, author: user });
+		if(user) {
+			const post = await Posts.create({ content, author: user });
+			return await post.populate('author');
+		}
+	} catch(err) {
+		return false;
 	}
 };
 
-exports.getAll = async () => {
-	return await Posts.find();
+exports.get = async (last) => {
+	try {
+		if(last) {
+			return await Posts.find({
+				_id: { $lt: last }
+			}).sort({ createdAt: -1 }).limit(3).populate('author');
+		}
+	
+		return await Posts.find().sort({ createdAt: -1 }).limit(3).populate('author');
+
+	} catch (err) {
+		return [];
+	}
 };
 
-// exports.get = async (page) => {
-// 	const limit = 3;
+exports.getAllFromUser = async (token, last) => {
+	try {
+		if(last) {
+			return await Posts.find({
+				_id: { $lt: last },
+				author: token,
+			}).sort({ createdAt: -1 }).limit(3).populate('author');
+		}
 	
-// 	if(!page || page < 1) {
-// 		page = 1;
-// 	}
+		return await Posts.find({
+			author: token
+		}).sort({ createdAt: -1 }).limit(3).populate('author');
 
-// 	return await Posts.find().sort({ createdAt: -1 })
-// 		.skip((page -1) * limit)
-// 			.limit(limit);
-// };
-
-exports.getAllFromUser = async (token) => {
-	return await Posts.find({ author: token });
+	} catch(err) {
+		return [];
+	}
 }

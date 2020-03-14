@@ -1,32 +1,35 @@
 const { Router } = require('express');
 
-const { create, getAll, getAllFromUser, get } = require('../services/post');
+const { create, get, getAllFromUser } = require('../services/post');
 const { jwtMiddleware } = require('../services/jwt');
 
 const router = Router();
 
-router.post('/create', jwtMiddleware, async (req, res) => {
-	const { content } = req.body;
+router.post('/create', jwtMiddleware,
+	async (req, res) => {
+		const { content } = req.body;
 
-	if(content) {
-		return res.json(await create(req.token, content));
-	}
+		if(content) {
+			const post = await create(req.token, content);
 
-	return res.sendStatus(400);
+			if(post) {
+				return res.json(post);
+			}
+		}
+
+		return res.sendStatus(400);
 });
 
 router.get('/', jwtMiddleware, async (req, res) => {
-	return res.json(await getAll());
+	const { last } = req.query;
+	return res.json(await get(last));
 });
-
-// router.get('/', jwtMiddleware, async (req, res) => {
-// 	const { page } = req.query;
-// 	return res.json(await get(page));
-// });
 
 router.get('/:userId', jwtMiddleware, async (req, res) => {
 	const { userId } = req.params;
-	return res.json(await getAllFromUser(userId));
+	const { last } = req.query;
+
+	return res.json(await getAllFromUser(userId, last));
 });
 
 
