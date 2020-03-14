@@ -3,4 +3,4 @@ A Simple Post Platform
 
 ## :) enjoy
 
-Base color -> #25E8D
+Base color -> #225E8D
