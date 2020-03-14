@@ -4,10 +4,10 @@ import { PulseLoader } from 'react-spinners';
 
 import { Button } from './styles';
 
-const ButtonComponent = ({ color, loading, width, children }) => {
+const ButtonComponent = ({ color, loading, width, children, ...rest }) => {
 	const theme = useContext(ThemeContext);
 	return (
-		<Button color={color} width={width}>
+		<Button color={color} width={width} {...rest}>
 			{loading ?
 			<PulseLoader
 				color={theme.text.primary}

@@ -5,7 +5,7 @@ export const Button = styled.button`
 	color: ${({ theme }) => theme.text.primary};
 	flex: 1;
 	border: none;
-	padding: 12px 16px;
+	padding:8px 10px;
 	border-radius:25px;
 	min-width: ${({ width }) => width || '100%'};
 	display: flex;
@@ -13,4 +13,12 @@ export const Button = styled.button`
 	text-overflow: ellipsis;
 	justify-content: center;
 	align-items: center;
+	font-size: 24px;
+	cursor: pointer;
+	transition: opacity 280ms ease-out;
+	opacity: .8;
+
+	&:hover {
+		opacity: 1;
+	}
 `;
