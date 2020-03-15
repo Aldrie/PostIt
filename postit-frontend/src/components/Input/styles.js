@@ -29,13 +29,18 @@ export const Input = styled.input`
 	}
 `;
 
-export const IconButton = styled.span`
+export const IconButton = styled.button.attrs({ type: 'button' })`
 	border: none;
 	background: transparent;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
-	width: 15%;
+	width: 9%;
+	cursor: pointer;
+
+	@media ${({ theme }) => theme.media.sm} {
+		width: 15%;
+	}
 `;
 
 export const StartIcon = styled.span`
@@ -45,6 +50,6 @@ export const StartIcon = styled.span`
 	width: 6%;
 
 	@media ${({ theme }) => theme.media.sm} {
-		width: 8%;
+		width: 12%;
 	}
 `;

@@ -3,7 +3,7 @@ import { MdEmail, MdLock } from 'react-icons/md'
 
 import Button from 'components/Button';
 import Input from 'components/Input';
-import { H1 } from 'components/Text';
+import { H1, Href } from 'components/Text';
 
 import {
 	Title,
@@ -20,6 +20,9 @@ const Login = () => {
 				<Input type="email" placeholder="email" icon={MdEmail}/>
 				<Input type="password" placeholder="password" icon={MdLock}/>
 				<Button>Login</Button>
+				<Href to="/auth/register" color="primary">
+					Don't have an account? Click here!
+				</Href>
 			</Form>
 		</>
 	);

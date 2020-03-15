@@ -5,6 +5,7 @@ import {
 	TextH3,
 	TextH4,
 	TextH5,
+	TextHref,
 } from './styles';
 
 export const H1 = ({ color, children }) => {
@@ -46,3 +47,11 @@ export const H5 = ({ color, children }) => {
 		</TextH5>
 	);
 };
+
+export const Href = ({ color, size, children, ...rest }) => {
+	return (
+		<TextHref color={color} size={size} {...rest}>
+			{children}
+		</TextHref>
+	);
+}
