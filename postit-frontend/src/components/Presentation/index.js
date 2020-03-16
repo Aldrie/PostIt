@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Button from 'components/Button';
-import AuthPage from '../Auth';
 
 import {
 	Container,
@@ -16,13 +15,11 @@ const PresentationPage = ({ history }) => {
 	};
 
 	return(
-		<AuthPage>
-			<Container>
-				<H1>PostIt!</H1>
-				<Button color="primary" onClick={() => handleRoute('/auth/login')}>Login</Button>
-				<Button color="secondary" onClick={() => handleRoute('/auth/register')}>Register</Button>
-			</Container>
-		</AuthPage>
+		<Container>
+			<H1>PostIt!</H1>
+			<Button color="primary" onClick={() => handleRoute('/auth/login')}>Login</Button>
+			<Button color="secondary" onClick={() => handleRoute('/auth/register')}>Register</Button>
+		</Container>
 	);
 };
 

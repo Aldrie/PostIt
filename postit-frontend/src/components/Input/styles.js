@@ -35,12 +35,8 @@ export const IconButton = styled.button.attrs({ type: 'button' })`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	width: 9%;
+	width: 32px;
 	cursor: pointer;
-
-	@media ${({ theme }) => theme.media.sm} {
-		width: 15%;
-	}
 `;
 
 export const StartIcon = styled.span`

@@ -6,7 +6,6 @@ import {
 	Content,
 	Nav,
 	NavLink,
-	AvatarContainer,
 	Avatar,
 } from './styles';
 import { withRouter } from 'react-router';
@@ -15,14 +14,12 @@ const HomePage = ({ children }) => {
 	return (
 		<Container>
 			<Aside>
-				<AvatarContainer>
-					<AvatarContainer />
-				</AvatarContainer>
+				<Avatar />
 				<Nav>
 					<NavLink to="/home" exact>
 						Home
 					</NavLink>
-					<NavLink to="/home/posts" exact>
+					<NavLink to="/home/create" exact>
 						Posts
 					</NavLink>
 				</Nav>

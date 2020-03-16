@@ -1,36 +1,29 @@
 import React from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+
+import Route from 'routes/Route';
 
 import AuthPage from 'pages/Auth';
 import HomePage from 'pages/Home';
 
 import LoginContainer from 'containers/Auth/LoginContainer';
 import RegisterContainer from 'containers/Auth/RegisterContainer';
-import PresentationPage from 'pages/Presentation';
+import PresentationComponent from 'components/Presentation';
 
 const Routes = () => {
 	return(
 		<BrowserRouter>
-			<Route path="/" exact component={PresentationPage}/>
+			<Switch>
+				<Route path="/" exact layout={AuthPage} component={PresentationComponent}/>
+				
+				<Route path="/auth/login" exact layout={AuthPage} component={LoginContainer}/>
+				<Route path="/auth/register" exact layout={AuthPage} component={RegisterContainer}/>
+				
+				<Route path="/home" exact layout={HomePage} component={() => <span>Home</span>}/>
+				<Route path="/home/create" exact layout={HomePage} component={() => <span>Create</span>}/>
 
-			<Route path="/auth">
-				<AuthPage>
-					<Switch>
-						<Route path="/auth/login" component={LoginContainer} exact/>
-						<Route path="/auth/register" component={RegisterContainer} exact/>
-						<Route component={() => <Redirect to="/"/>}/>
-					</Switch>
-				</AuthPage>
-			</Route>
-			
-			<Route path="/home">
-				<Switch>
-					<HomePage>
-						<Route path="/home" exact component={() => <span>Home</span>}/>
-						<Route path="/home/posts" exact component={() => <span>Posts</span>}/>
-					</HomePage>
-				</Switch>
-			</Route>
+				<Route component={() => <Redirect to="/"/>} />
+			</Switch>
 		</BrowserRouter>
 	);
 }
