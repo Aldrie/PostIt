@@ -20,8 +20,12 @@ export const Posts = styled.div`
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-	max-height: calc(100vh - 200px);
+	max-height: calc(100vh - 128px);
 	overflow-y: auto;
+
+	@media ${({ theme }) => theme.media.lg} {
+		max-height: calc(100vh - 180px);
+	}
 `;
 
 export const Loading = styled.div`
