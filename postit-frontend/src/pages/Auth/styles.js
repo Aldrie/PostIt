@@ -22,6 +22,7 @@ export const Container = styled.div`
 export const Box = styled.div`
 	background: ${({ theme }) => hexToRgba(theme.text.primary, .8)};
 	width: 100%;
+	padding: 16px;
 	flex: 1;
 	display: flex;
 	flex-direction: column;

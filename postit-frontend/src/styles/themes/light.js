@@ -4,6 +4,7 @@ const theme = {
 	tertiary:  '#D874AA',
 	text: {
 		primary: '#F4FAFF',
+		contrast: '#3C4856',
 	},
 	utils: {
 		error: '#9B393C',

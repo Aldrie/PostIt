@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { hexToRgba } from 'utils/styleUtils';
 
 export const Title = styled.div`
 	display: flex;
@@ -12,10 +13,10 @@ export const Form = styled.form`
 	flex-wrap: wrap;
 	align-items: center;
 	text-align: center;
-	padding: 12px 28%;
+	padding: 0 28%;
 
 	@media ${({ theme }) => theme.media.sm} {
-		padding: 16px;
+		padding:  0 8px;
 	}
 
 	& > * {
@@ -26,13 +27,16 @@ export const Form = styled.form`
 export const DropContainer = styled.div.attrs({
 	className: 'dropzone',
 })`
-	padding: 36px;
-	width: 100%;
+	padding: 12px;
+	height: 180px;
+	width: 180px;
 	border: 2px dashed ${({ theme }) => theme.primary};
 	color: ${({ theme }) => theme.primary};
-	border-radius: 4px;
+	border-radius: 200px;
 	cursor: pointer;
 	opacity: .4;
+	background-size: cover;
+	background-position: center;
 
 	display: flex;
 	justify-content: center;
@@ -43,12 +47,12 @@ export const DropContainer = styled.div.attrs({
 	}
 
 	span {
-		font-size: 18px;
+		font-size: 16px;
 	}
 
 	transition: all 200ms ease-out;
 
-	${({ isDragActive }) => isDragActive && css`
+	${({ isDragActive }) => (isDragActive) && css`
 		opacity: 1;
 	`}
 
@@ -56,5 +60,17 @@ export const DropContainer = styled.div.attrs({
 		opacity: 1;
 		border-color: ${({ theme }) => theme.utils.error};
 		color: ${({ theme }) => theme.utils.error};
+		text-shadow: 0 0 12px ${({ theme }) => hexToRgba(theme.utils.error, .6)};
+		box-shadow: 0 0 12px ${({ theme }) => hexToRgba(theme.utils.error, .6)};
 	`}
+
+	${({ preview }) => preview && css`
+		background-image: url(${preview});
+		opacity: .8;
+	`};
+
+	@media ${({ theme }) => theme.media.sm} {
+		height: 100px;
+		width: 100px;
+	}
 `;

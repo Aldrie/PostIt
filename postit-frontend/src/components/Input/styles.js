@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const Input = styled.input`
 	background: transparent;
 	border: none;
-	width: 85%;
+	width: 100%;
 	font-size: 22px;
 	color: ${({ theme }) => theme.primary};
 
@@ -43,9 +43,9 @@ export const StartIcon = styled.span`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	width: 6%;
+	width: 24px;
 
 	@media ${({ theme }) => theme.media.sm} {
-		width: 12%;
+		width: 32px;
 	}
 `;

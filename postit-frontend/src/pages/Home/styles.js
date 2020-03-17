@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink as Navigation } from 'react-router-dom';
 import { hexToRgba } from 'utils/styleUtils';
 
@@ -41,8 +41,12 @@ export const Aside = styled.aside`
 	@media ${({ theme }) => theme.media.lg} {
 		justify-content: space-around;
 		flex-direction: row-reverse;
-		padding: 4px 2px;
+		background: ${({ theme }) => theme.primary};
+		h4 {
+			display: none;
+		}
 	}
+	
 `;
 
 export const Nav = styled.div`
@@ -67,8 +71,9 @@ export const Nav = styled.div`
 	}
 
 	@media ${({ theme }) => theme.media.lg} {
-		width: 80%;
-		justify-content: flex-start;
+		width: 70%;
+		justify-content: center;
+		flex-wrap: nowrap;
 
 		.active {
 			background: transparent;
@@ -79,7 +84,7 @@ export const Nav = styled.div`
 	}
 `;
 
-export const NavLink = styled(Navigation)`
+const NavItemStyle = css`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -97,8 +102,20 @@ export const NavLink = styled(Navigation)`
 	@media ${({ theme }) => theme.media.lg} {
 		background: transparent;
 		width: auto;
-		margin-left: 20px;
+		margin-left: 8px;
+		font-size: 18px;
 	}
+`;
+
+export const NavLink = styled(Navigation)`
+	${NavItemStyle}
+`;
+
+export const NavItem = styled.button`
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	${NavItemStyle}
 `;
 
 export const Avatar = styled.div`

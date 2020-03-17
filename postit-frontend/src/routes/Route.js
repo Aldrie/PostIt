@@ -1,14 +1,30 @@
 import React, { memo } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
-const CustomRoute = ({ component: Component, layout: Layout, ...rest }) => {
+const CustomRoute = ({ component: Component, layout: Layout, isPrivate, ...rest }) => {
+
+	const auth = true;
+	
 	return(
 		<Route {...rest}
-		render={(props) => Layout ? 
-		<Layout>
-			<Component {...props}/>
-		</Layout> 
-		:	<Component {...props}/>}
+		render={(props) => 
+			isPrivate ? auth
+				? (
+					<Layout>
+						<Component {...props}/>
+					</Layout>
+				) : (
+					<Redirect to="/"/>
+				)
+				: !auth ? (
+					<Layout>
+						<Component {...props}/>
+					</Layout>
+				) 
+				:(
+					<Redirect to="/posts"/>
+				)
+			}
 		/>
 	);
 }

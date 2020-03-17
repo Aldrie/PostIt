@@ -20,8 +20,8 @@ const Login = () => {
 				<Input type="email" placeholder="email" icon={MdEmail}/>
 				<Input type="password" placeholder="password" icon={MdLock}/>
 				<Button>Login</Button>
-				<Href to="/auth/register" color="primary">
-					Don't have an account? Click here!
+				<Href to="/register" color="primary">
+					Don't have an account? Register!
 				</Href>
 			</Form>
 		</>

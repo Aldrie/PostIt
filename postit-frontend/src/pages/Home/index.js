@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router';
+import { ThemeContext } from 'styled-components';
+
+import { H4 } from 'components/Text';
 
 import {
 	Container,
@@ -6,22 +10,30 @@ import {
 	Content,
 	Nav,
 	NavLink,
+	NavItem,
 	Avatar,
 } from './styles';
-import { withRouter } from 'react-router';
 
 const HomePage = ({ children }) => {
+	const theme = useContext(ThemeContext);
+
 	return (
 		<Container>
 			<Aside>
 				<Avatar />
+				<H4 color={theme.text.primary}>
+					Name
+				</H4>
 				<Nav>
-					<NavLink to="/home" exact>
-						Home
-					</NavLink>
-					<NavLink to="/home/create" exact>
+					<NavLink to="/posts">
 						Posts
 					</NavLink>
+					<NavLink to="/create" exact>
+						Create
+					</NavLink>
+					<NavItem>
+						Logout
+					</NavItem>
 				</Nav>
 			</Aside>
 			<Content>

@@ -17,8 +17,8 @@ const PresentationPage = ({ history }) => {
 	return(
 		<Container>
 			<H1>PostIt!</H1>
-			<Button color="primary" onClick={() => handleRoute('/auth/login')}>Login</Button>
-			<Button color="secondary" onClick={() => handleRoute('/auth/register')}>Register</Button>
+			<Button color="primary" onClick={() => handleRoute('/login')}>Login</Button>
+			<Button color="secondary" onClick={() => handleRoute('/register')}>Register</Button>
 		</Container>
 	);
 };
