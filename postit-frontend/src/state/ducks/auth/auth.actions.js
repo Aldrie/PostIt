@@ -7,14 +7,14 @@ export const AuthActionTypes = {
 	LOGIN_FAILURE: '@AUTH/LOGIN_FAILURE',
 };
 
-export const registerAction = (name, email, password, avatar) => {
+export const register = (name, email, password, avatar) => {
 	return {
 		type: AuthActionTypes.LOGIN,
 		payload: { name, email, password, avatar },
 	};
 };
 
-export const registerSuccessAction = (user) => {
+export const registerSuccess = (user) => {
 	return {
 		type: AuthActionTypes.LOGIN,
 		payload: user,
