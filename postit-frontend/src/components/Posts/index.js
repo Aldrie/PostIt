@@ -52,7 +52,7 @@ const PostComponent = ({ history }) => {
 					/>
 				))}
 				<Loading>
-					<BeatLoader size="16" color={theme.secondary} />
+					<BeatLoader size="16px" color={theme.secondary} />
 				</Loading>
 			</Posts>
 		</Container>

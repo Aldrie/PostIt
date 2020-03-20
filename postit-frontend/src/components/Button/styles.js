@@ -14,11 +14,17 @@ export const Button = styled.button`
 	justify-content: center;
 	align-items: center;
 	font-size: 24px;
-	cursor: pointer;
 	transition: opacity 280ms ease-out;
 	opacity: .8;
 
-	&:hover {
+	&:hover:not([disabled]) {
 		opacity: 1;
+		cursor: pointer;
 	}
+
+	&:disabled {
+		filter: saturate(.8);
+		opacity: .5;
+	}
+
 `;

@@ -1,4 +1,5 @@
 import { PostActionTypes } from './posts.actions';
+import { AuthActionTypes } from 'state/ducks/auth/auth.actions';
 
 const INITIAL_STATE = {
 	posts: [],
@@ -27,8 +28,10 @@ export default function postReducer(state = INITIAL_STATE, action) {
 		case PostActionTypes.LOAD_POST_FAILURE:
 			return { ...state, error: action.payload};
 
+			case AuthActionTypes.LOGOUT:
+				return { INITIAL_STATE };
 
 		default:
-			return { ...state };
+			return state;
 	}
 }

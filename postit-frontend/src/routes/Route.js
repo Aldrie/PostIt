@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const CustomRoute = ({ component: Component, layout: Layout, isPrivate, ...rest }) => {
 
-	const auth = true;
+	const auth = false;
 	
 	return(
 		<Route {...rest}

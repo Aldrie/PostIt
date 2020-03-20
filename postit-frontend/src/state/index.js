@@ -1,11 +1,17 @@
-import { createStore, combineReducers } from 'redux';
-import AuthReducer from 'state/ducks/auth/auth.reducer';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-const reducers = combineReducers({
-	auth: AuthReducer,
-});
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import { rootReducer, rootSaga } from './configs';
+
+const sagaMiddleware = createSagaMiddleware();
 
 export default createStore(
-	reducers,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+	rootReducer,
+	composeWithDevTools(
+		applyMiddleware(sagaMiddleware)
+	)
 );
+
+sagaMiddleware.run(rootSaga);

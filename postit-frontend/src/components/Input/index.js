@@ -4,7 +4,7 @@ import { ThemeContext } from 'styled-components';
 
 import { Container, Input, IconButton, StartIcon } from './styles';
 
-const ButtonComponent = ({ icon: Icon,...rest }) => {
+const InputComponent = ({ icon: Icon,...rest }) => {
 	const theme = useContext(ThemeContext);
 	const [show, setShow] = useState(false);
 
@@ -30,4 +30,4 @@ const ButtonComponent = ({ icon: Icon,...rest }) => {
 	);
 };
 
-export default memo(ButtonComponent);
+export default memo(InputComponent);
