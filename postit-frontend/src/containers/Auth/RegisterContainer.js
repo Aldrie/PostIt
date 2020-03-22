@@ -9,7 +9,7 @@ const RegisterContainer = () => {
 	const dispatch = useDispatch();
 
 	const dispatchToProps = {
-		resQgister: useCallback(
+		register: useCallback(
 			(name, email, password, avatar) => 
 			dispatch(
 				register(name, email, password, avatar)

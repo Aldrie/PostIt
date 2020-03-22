@@ -10,7 +10,7 @@ import {
 	Form,
 } from '../styles';
 
-const Login = ({ login }) => {
+const Login = ({ login, loading, error }) => {
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -38,7 +38,9 @@ const Login = ({ login }) => {
 					icon={MdLock}
 					onChange={(event) => setPassword(event.target.value)}
 				/>
-				<Button disabled={!(email && password)}>Login</Button>
+				<Button disabled={!(email && password)} loading={loading}>
+					Login
+				</Button>
 				<Href to="/register" color="primary">
 					Don't have an account? Register!
 				</Href>

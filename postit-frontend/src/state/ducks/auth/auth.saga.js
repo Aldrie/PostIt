@@ -1,4 +1,6 @@
-import { put, all, takeLatest } from 'redux-saga/effects';
+import { put, all, takeLatest, delay } from 'redux-saga/effects';
+import authService from 'services/api/auth';
+
 import {
 	registerSuccess,
 	registerFailure,
@@ -9,27 +11,25 @@ import {
 
 function* handleRegister({ payload }) {
 	try {
-		const user = {
-			name: payload.name,
-			avatar: 'awdwdawd',
-			token: 'treertert',
-		};
-		console.log(payload);
-		
-		yield put(registerSuccess(user));
+		const { name, email, password, avatar } = payload;
+		const response = yield authService.register(name, email, password, avatar);
+
+		localStorage.setItem('token', response.data.token);
+		yield put(registerSuccess(response.data));
 	} catch (error) {
+		console.log(error);
 		yield put(registerFailure(error));
 	}
 }
 
 function* handleLogin({ payload }) {
 	try {
-		const user = {
-			name: payload.name,
-			avatar: 'awdwdawd',
-			token: 'treertert',
-		};
-		yield put(loginSuccess(user));
+		const { email, password } = payload;
+		const response = yield authService.login(email, password);
+
+		localStorage.setItem('token', response.data.token);
+		yield delay(1200);
+		yield put(loginSuccess(response.data));
 	}	catch(error) {
 		yield put(loginFailure(error));
 	}

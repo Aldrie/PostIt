@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import { ThemeContext } from 'styled-components';
 
@@ -15,14 +16,15 @@ import {
 } from './styles';
 
 const HomePage = ({ children }) => {
+	const authState = useSelector(state => state.auth);
 	const theme = useContext(ThemeContext);
 
 	return (
 		<Container>
 			<Aside>
-				<Avatar />
+				<Avatar src={authState.avatar || ''}/>
 				<H4 color={theme.text.primary}>
-					Name
+					{authState.name || ''}
 				</H4>
 				<Nav>
 					<NavLink to="/posts">

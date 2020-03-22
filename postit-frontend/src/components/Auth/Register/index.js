@@ -42,8 +42,7 @@ const Register = ({ register }) => {
 
 	const handleRegister = (event) => {
 		event.preventDefault();
-		console.log(avatar);
-		register(name, email, password, avatar.preview);
+		register(name, email, password, avatar.file);
 	};
 	
 	return(
