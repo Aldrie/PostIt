@@ -12,7 +12,7 @@ import {
 	DropContainer,
 } from '../styles';
 
-const Register = ({ register }) => {
+const Register = ({ register, loading }) => {
 
 	const [avatar, setAvatar] = useState({ preview: '', file: '' });
 	const [name, setName] = useState('');
@@ -79,7 +79,10 @@ const Register = ({ register }) => {
 					onChange={(event) => setPassword(event.target.value)}
 				/>
 
-				<Button disabled={!(name && email && password)}>
+				<Button
+					disabled={!(name && email && password) || loading}
+					loading={loading}
+				>
 					Register
 				</Button>
 				<Href to="/login" color="primary">

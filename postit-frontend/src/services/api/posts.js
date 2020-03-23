@@ -9,7 +9,7 @@ const loadPosts = async (last) => {
 };
 
 const createPost = async (content) => {
-	return await api.post('/posts', {
+	return await api.post('/posts/create', {
 		content,
 	});
 };

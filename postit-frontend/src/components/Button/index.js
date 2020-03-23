@@ -11,9 +11,9 @@ const ButtonComponent = ({ color, loading, width, children, ...rest }) => {
 			{loading ?
 			<PulseLoader
 				color={theme.text.primary}
-				margin={6}
+				margin={2}
 				loading
-				size={12}
+				size={8}
 			/>
 			: children}
 		</Button>

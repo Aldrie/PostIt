@@ -27,6 +27,15 @@ export default function postReducer(state = INITIAL_STATE, action) {
 
 		case PostActionTypes.LOAD_POST_FAILURE:
 			return { ...state, loading: false, error: action.payload};
+		
+		case PostActionTypes.CREATE_POST:
+			return { ...state, loading: true};
+
+		case PostActionTypes.CREATE_POST_SUCCESS:
+			return { ...state, loading: false};
+			
+		case PostActionTypes.CREATE_POST_FAILURE:
+			return { ...state, loading: false, error: action.payload};
 
 			case AuthActionTypes.LOGOUT:
 				return { INITIAL_STATE };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
@@ -23,7 +23,6 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 		if( scrollTop + clientHeight>= (scrollHeight -1) && !loading) {
 			const lastPost = posts[posts.length -1];
 			if(lastPost) {
-				console.log('aaaa')	
 				loadPosts(lastPost._id);
 			}
 		}
@@ -38,8 +37,10 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 	}
 
 	useEffect(() => {
-		loadPosts();
-	}, [loadPosts]);
+		if(posts.length <= 0) {
+			loadPosts();
+		}
+	}, [loadPosts, posts.length]);
 
 	return (
 		<Container>

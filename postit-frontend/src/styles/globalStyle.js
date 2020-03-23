@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		-webkit-font-smoothing: antialiased;
 		font-family: Josefin Sans, sans-serif;
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	html, body, #root {

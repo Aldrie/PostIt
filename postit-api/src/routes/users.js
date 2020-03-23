@@ -13,7 +13,6 @@ router.post('/register', multer(createUserMulterConfig).single('avatar'),
 		const { name, email, password } = req.body;
 
 		if(name && email && password) {
-			console.log(req.file);
 			const avatarUrl = `${process.env.HOST}:${process.env.PORT}/files/${req.file.filename}`
 			
 			const user = await register(name, email, password, avatarUrl);
@@ -37,7 +36,7 @@ router.post('/login', async (req, res) => {
 		if(user) {
 			return res.json(user);
 		}
-		return res.sendStatus(403);
+		return res.sendStatus(404);
 	}
 
 	return res.sendStatus(409);
