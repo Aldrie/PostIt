@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import { ToastContainer } from 'react-toastify';
 
 import { store, persistor } from 'state';
 import Routes from 'routes';
@@ -16,6 +17,7 @@ function App() {
 			<PersistGate loading={null} persistor={persistor}>
 				<ThemeProvider theme={lightTheme}>
 					<GlobalStyle />
+					<ToastContainer />
 					<Routes />
 				</ThemeProvider>
 			</PersistGate>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { withRouter } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
@@ -13,19 +13,19 @@ import {
 	Loading,
 } from './styles';
 
-const PostComponent = ({ history }) => {
+const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 	const theme = useContext(ThemeContext);
-
-	const [data, setData] = useState([
-		{}, {}, {},{}, {}, {},{}, {}, {}
-	]);
 
 	const scrollRef = useRef(null);
 
 	const handleScroll = () => {
 		const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-		if( scrollTop + clientHeight >= scrollHeight) {
-			console.log('Ao');
+		if( scrollTop + clientHeight>= (scrollHeight -1) && !loading) {
+			const lastPost = posts[posts.length -1];
+			if(lastPost) {
+				console.log('aaaa')	
+				loadPosts(lastPost._id);
+			}
 		}
 	};
 
@@ -37,24 +37,28 @@ const PostComponent = ({ history }) => {
 		history.push(`/users/${id}`);
 	}
 
+	useEffect(() => {
+		loadPosts();
+	}, [loadPosts]);
+
 	return (
 		<Container>
 			<H2>Latest posts:</H2>
 			<Posts ref={scrollRef} onScroll={handleScroll}>
-				{data.map((item, index) => (
+				{posts.map((post, index) => (
 					<Post
-						key={index}
+						key={post._id}
 						even={index % 2 === 0}
-						author={{ name: 'Alawdawdawdawdwdwaddrie' }}
-						content="aooo"
-						avatarClick={() => handleAvatarClick(index)}
-						onClick={() => handlePostClick(index)}
+						author={post.author}
+						content={post.content}
+						avatarClick={() => handleAvatarClick(post.author._id)}
+						onClick={() => handlePostClick(post._id)}
 					/>
 				))}
-				<Loading>
-					<BeatLoader size="16px" color={theme.secondary} />
-				</Loading>
 			</Posts>
+			<Loading>
+				{loading && <BeatLoader size="16px" color={theme.secondary} />}
+			</Loading>
 		</Container>
 	);
 };

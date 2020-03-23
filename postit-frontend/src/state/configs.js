@@ -8,6 +8,7 @@ import PostsReducer from 'state/ducks/posts/posts.reducer';
 import UserReducer from 'state/ducks/user/user.reducer';
 
 import authSaga from './ducks/auth/auth.saga';
+import postsSaga from './ducks/posts/posts.saga';
 
 export const reducers = combineReducers({
 	auth: AuthReducer,
@@ -26,5 +27,6 @@ export const rootReducer = persistReducer(persistConfig, reducers);
 export function* rootSaga() {
 	yield all([
 		fork(authSaga),
+		fork(postsSaga),
 	]);
 }

@@ -119,7 +119,7 @@ export const NavItem = styled.button`
 `;
 
 export const Avatar = styled.div`
-	background-image: url(${({ src }) => src ? src : emptyAvatar });
+	background-image: url('${({ src }) => src ? src : emptyAvatar }');
 	background-size: cover;
 	justify-self: center;
 	border-radius: 100px;

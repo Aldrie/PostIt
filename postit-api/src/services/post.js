@@ -19,10 +19,10 @@ exports.get = async (last) => {
 		if(last) {
 			return await Posts.find({
 				_id: { $lt: last }
-			}).sort({ createdAt: -1 }).limit(3).populate('author');
+			}).sort({ createdAt: -1 }).limit(6).populate('author');
 		}
 	
-		return await Posts.find().sort({ createdAt: -1 }).limit(3).populate('author');
+		return await Posts.find().sort({ createdAt: -1 }).limit(6).populate('author');
 
 	} catch (err) {
 		return [];
@@ -35,12 +35,12 @@ exports.getAllFromUser = async (token, last) => {
 			return await Posts.find({
 				_id: { $lt: last },
 				author: token,
-			}).sort({ createdAt: -1 }).limit(3).populate('author');
+			}).sort({ createdAt: -1 }).limit(6).populate('author');
 		}
 	
 		return await Posts.find({
 			author: token
-		}).sort({ createdAt: -1 }).limit(3).populate('author');
+		}).sort({ createdAt: -1 }).limit(6).populate('author');
 
 	} catch(err) {
 		return [];

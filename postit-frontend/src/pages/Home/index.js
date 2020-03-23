@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { ThemeContext } from 'styled-components';
 
 import { H4 } from 'components/Text';
+import { logOut } from 'state/ducks/auth/auth.actions';
 
 import {
 	Container,
@@ -16,8 +17,13 @@ import {
 } from './styles';
 
 const HomePage = ({ children }) => {
+	const dispath = useDispatch();
 	const authState = useSelector(state => state.auth);
 	const theme = useContext(ThemeContext);
+
+	const handleLogout = () => {
+		dispath(logOut());
+	};
 
 	return (
 		<Container>
@@ -33,7 +39,7 @@ const HomePage = ({ children }) => {
 					<NavLink to="/create" exact>
 						Create
 					</NavLink>
-					<NavItem>
+					<NavItem onClick={handleLogout}>
 						Logout
 					</NavItem>
 				</Nav>

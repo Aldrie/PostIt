@@ -20,11 +20,11 @@ export const Posts = styled.div`
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: flex-start;
-	max-height: calc(100vh - 128px);
+	max-height: calc(100vh - 180px);
 	overflow-y: auto;
 
 	@media ${({ theme }) => theme.media.lg} {
-		max-height: calc(100vh - 180px);
+		max-height: calc(100vh - 220px);
 	}
 `;
 
@@ -34,4 +34,5 @@ export const Loading = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	height: 24px;
 `;
