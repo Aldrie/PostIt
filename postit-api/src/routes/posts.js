@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { create, get, getAllFromUser } = require('../services/post');
+const { create, get, list, listAllFromUser } = require('../services/post');
 const { jwtMiddleware } = require('../services/jwt');
 
 const router = Router();
@@ -20,16 +20,21 @@ router.post('/create', jwtMiddleware,
 		return res.sendStatus(400);
 });
 
-router.get('/', jwtMiddleware, async (req, res) => {
-	const { last } = req.query;
-	return res.json(await get(last));
+router.get('/:postId', jwtMiddleware, async (req ,res) => {
+	const { postId } = req.params;
+	return res.json(await get(postId));
 });
 
-router.get('/:userId', jwtMiddleware, async (req, res) => {
+router.get('/', jwtMiddleware, async (req, res) => {
+	const { last } = req.query;
+	return res.json(await list(last));
+});
+
+router.get('/user/:userId', jwtMiddleware, async (req, res) => {
 	const { userId } = req.params;
 	const { last } = req.query;
 
-	return res.json(await getAllFromUser(userId, last));
+	return res.json(await listAllFromUser(userId, last));
 });
 
 

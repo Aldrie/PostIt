@@ -14,7 +14,15 @@ exports.create = async (token, content) => {
 	}
 };
 
-exports.get = async (last) => {
+exports.get = async (id) => {
+	try {
+		return await Posts.findById(id).populate('author');
+	} catch(err) {
+		return [];
+	}
+};
+
+exports.list = async (last) => {
 	try {
 		if(last) {
 			return await Posts.find({
@@ -29,7 +37,7 @@ exports.get = async (last) => {
 	}
 };
 
-exports.getAllFromUser = async (token, last) => {
+exports.listAllFromUser = async (token, last) => {
 	try {
 		if(last) {
 			return await Posts.find({
