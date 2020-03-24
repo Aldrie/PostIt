@@ -20,7 +20,7 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 
 	const handleScroll = () => {
 		const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-		if( scrollTop + clientHeight>= (scrollHeight -1) && !loading) {
+		if(scrollTop + clientHeight>= (scrollHeight) && !loading) {
 			const lastPost = posts[posts.length -1];
 			if(lastPost) {
 				loadPosts(lastPost._id);
@@ -37,16 +37,16 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 	}
 
 	useEffect(() => {
-		if(posts.length <= 0) {
+		if(posts?.length <= 0) {
 			loadPosts();
 		}
-	}, [loadPosts, posts.length]);
+	}, [loadPosts, posts]);
 
 	return (
 		<Container>
 			<H2>Latest posts:</H2>
 			<Posts ref={scrollRef} onScroll={handleScroll}>
-				{posts.map((post, index) => (
+				{posts && posts.map((post, index) => (
 					<Post
 						key={post._id}
 						even={index % 2 === 0}

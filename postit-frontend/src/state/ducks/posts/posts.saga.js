@@ -1,16 +1,35 @@
 import { all, put, delay, call, takeLeading, takeLatest } from 'redux-saga/effects';
 import postsService from 'services/api/posts';
-import { PostActionTypes, loadPostSuccess, loadPostFailure, createPostFailure, createPostSuccess } from './posts.actions';
+import {
+	PostActionTypes,
+	loadPostsSuccess,
+	loadPostsFailure,
+	createPostFailure,
+	createPostSuccess,
+	loadPostSuccess,
+	loadPostFailure,
+} from './posts.actions';
+
 import { errorToast, successToast } from 'utils/toast';
+
+function* handleLoadPost({ payload }) {
+	try {
+		yield delay(1800);
+		const response = yield call(postsService.loadPost, payload);
+		yield put(loadPostSuccess(response.data));
+	} catch(err) {
+		yield put(loadPostFailure(err));
+	}
+}
 
 function* handleLoadPosts({ payload }) {
 	try {
 		yield delay(2000);
 		const response = yield call(postsService.loadPosts, payload);
-		yield put(loadPostSuccess(response.data));
+		yield put(loadPostsSuccess(response.data));
 	} catch(err) {
 		errorToast('Erro!', 'Erro ao carregar posts!');
-		yield put(loadPostFailure(err));
+		yield put(loadPostsFailure(err));
 		console.log(err);
 	}
 }
@@ -30,6 +49,7 @@ function* handleCreatePost({ payload }) {
 export default function* postSaga() {
 	yield all([
 		takeLeading(PostActionTypes.LOAD_POSTS, handleLoadPosts),
+		takeLeading(PostActionTypes.LOAD_POST, handleLoadPost),
 		takeLatest(PostActionTypes.CREATE_POST, handleCreatePost),
 	]);
 }

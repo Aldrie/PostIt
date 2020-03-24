@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const CustomRoute = ({ component: Component, layout: Layout, isPrivate, ...rest }) => {
 
-	const auth = localStorage.getItem('token');
+	const auth = useSelector(state => state.auth.token);
 	
 	return(
 		<Route {...rest}

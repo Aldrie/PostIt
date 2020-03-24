@@ -9,6 +9,7 @@ import UserReducer from 'state/ducks/user/user.reducer';
 
 import authSaga from './ducks/auth/auth.saga';
 import postsSaga from './ducks/posts/posts.saga';
+import userSaga from './ducks/user/user.saga';
 
 export const reducers = combineReducers({
 	auth: AuthReducer,
@@ -28,5 +29,6 @@ export function* rootSaga() {
 	yield all([
 		fork(authSaga),
 		fork(postsSaga),
+		fork(userSaga),
 	]);
 }

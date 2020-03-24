@@ -1,4 +1,5 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
 import { MdChevronLeft } from 'react-icons/md';
@@ -12,29 +13,39 @@ import {
 } from './styles';
 
 import { H3 } from 'components/Text';
+import { PulseLoader } from 'react-spinners';
 
-const ViewPost = () => {
-
+const ViewPost = ({ loadPost, post, loading, error }) => {
+	const { id } = useParams();
 	const theme = useContext(ThemeContext);
 
 	const handleBackClick = useCallback(() => {
 		window.history.back();
 	}, []);
 
+	useEffect(() => {
+		loadPost(id);
+	}, [id, loadPost]);
+
 	return (
 		<Container>
-			<Header>
-				<MdChevronLeft size="48" color={theme.primary} onClick={handleBackClick}/>
-				<Author>
-					<H3>name</H3>
-					<Avatar />
-				</Author>
-			</Header>
+			{loading ? (
+				<PulseLoader color={theme.primary}/>
+			) : (
+				<>
+					<Header>
+						<MdChevronLeft size="48" color={theme.primary} onClick={handleBackClick}/>
+							<Author>
+								<H3>{post?.author?.name || ''}</H3>
+								<Avatar src={post?.author?.avatar}/>
+							</Author>
+					</Header>
 
-			<Content>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis reiciendis, eius dolorum corporis ratione maxime, incidunt dolore veritatis eum tempore ullam sed architecto quibusdam voluptas. Dolor consequuntur est qui vitae.
-			</Content>
-
+					<Content>
+						{post?.content || ''}
+					</Content>
+				</>
+			)}
 		</Container>
 	);
 };

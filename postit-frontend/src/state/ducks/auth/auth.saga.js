@@ -17,10 +17,8 @@ function* handleRegister({ payload }) {
 		const { name, email, password, avatar } = payload;
 		const response = yield call(authService.register, name, email, password, avatar);
 
-		localStorage.setItem('token', response.data.token);
 		successToast('Cadastrado com sucesso :)');
 		yield put(registerSuccess(response.data));
-		window.location.reload();
 	} catch (error) {
 		console.log(error);
 		errorToast('Erro!', 'Erro ao cadastrar usuário :(')
@@ -35,23 +33,20 @@ function* handleLogin({ payload }) {
 		const response = yield call(authService.login, email, password);
 		const { name, avatar, token } = response.data;
 
-		localStorage.setItem('token', token);
-		yield put(loginSuccess({ name, avatar }));
-		window.location.reload();
+		yield put(loginSuccess({ name, avatar, token }));
 	}	catch(error) {
+		yield put(loginFailure(error));
 		if(error.response.status === 404) {
 			errorToast('Erro!', 'Usuário inválido!');
 		}else {
 			errorToast('Erro!', 'Erro ao entrar, tente novamente!');
 		}
-		yield put(loginFailure(error));
 	}
 }
 
 function handleLogout() {
 	try {
 		localStorage.clear();
-		window.location.reload();
 	} catch(err) {	
 		errorToast('Erro ao sair');
 	}

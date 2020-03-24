@@ -14,7 +14,7 @@ export default function postReducer(state = INITIAL_STATE, action) {
 			return { ...state, loading: true };
 
 		case PostActionTypes.LOAD_POSTS_SUCCESS:
-			return { ...state, loading: false, posts: action.payload };
+			return { ...state, loading: false, posts: state.posts.concat(action.payload) };
 		
 		case PostActionTypes.LOAD_POSTS_FAILURE:
 			return { ...state, loading: false, error: action.payload };
@@ -23,7 +23,7 @@ export default function postReducer(state = INITIAL_STATE, action) {
 			return { ...state, loading: true };
 		
 		case PostActionTypes.LOAD_POST_SUCCESS:
-			return { ...state, loading: false, posts: state.posts.concat(action.payload)};
+			return { ...state, loading: false, post: action.payload};
 
 		case PostActionTypes.LOAD_POST_FAILURE:
 			return { ...state, loading: false, error: action.payload};

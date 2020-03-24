@@ -1,5 +1,9 @@
 import api from 'services/api';
 
+const loadPost = async (id) => {
+	return await api.get(`/posts/${id}`);
+};
+
 const loadPosts = async (last) => {
 	return await api.get('/posts', {
 		params: {
@@ -23,6 +27,7 @@ const loadPostsFromUser = async (id, last) => {
 };
 
 export default {
+	loadPost,
 	loadPosts,
 	createPost,
 	loadPostsFromUser,

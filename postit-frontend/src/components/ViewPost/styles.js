@@ -46,7 +46,7 @@ export const Author = styled.div`
 `;
 
 export const Avatar = styled.div`
-	background-image: url(${({ src }) => src ? src : emptyAvatar });
+	background-image: url('${({ src }) => src ? src : emptyAvatar }');
 	background-size: cover;
 	border-radius: 100px;
 	min-height: 90px;
@@ -66,3 +66,4 @@ export const Content = styled.div`
 	height: calc(100vh - 120px);
 	overflow: auto;
 `;
+

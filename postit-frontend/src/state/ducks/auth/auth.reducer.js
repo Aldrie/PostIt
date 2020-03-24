@@ -3,6 +3,7 @@ import { AuthActionTypes } from './auth.actions';
 const INITIAL_STATE = {
 	name: '',
 	avatar: '',
+	token: '',
 	loading: false,
 	error: '',
 };
