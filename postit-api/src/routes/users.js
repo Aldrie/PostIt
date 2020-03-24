@@ -4,7 +4,7 @@ const { createUserMulterConfig } = require('../config/multer');
 
 const { jwtMiddleware } = require('../services/jwt');
 
-const { register, login, getAll } = require('../services/user');
+const { register, login, get } = require('../services/user');
 
 const router = Router();
 
@@ -42,8 +42,9 @@ router.post('/login', async (req, res) => {
 	return res.sendStatus(409);
 });
 
-router.get('/', jwtMiddleware, async (req, res) => {
-	return res.json(await getAll());
+router.get('/:userId', jwtMiddleware, async (req, res) => {
+	const { userId } = req.params;
+	return res.json(await get(userId));
 });
 
 module.exports = router;

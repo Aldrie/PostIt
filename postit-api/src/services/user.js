@@ -38,6 +38,10 @@ exports.login = async (email, password) => {
 	}
 }
 
-exports.getAll = async () => {
-	return await Users.find();
+exports.get = async (id) => {
+	try {
+		return await Users.findById(id);
+	} catch(err) {
+		return {};
+	}
 }

@@ -37,18 +37,18 @@ exports.list = async (last) => {
 	}
 };
 
-exports.listAllFromUser = async (token, last) => {
+exports.listAllFromUser = async (id, last) => {
 	try {
 		if(last) {
 			return await Posts.find({
 				_id: { $lt: last },
-				author: token,
-			}).sort({ createdAt: -1 }).limit(6).populate('author');
+				author: id,
+			}).sort({ createdAt: -1 }).limit(6).select('-author');
 		}
 	
 		return await Posts.find({
-			author: token
-		}).sort({ createdAt: -1 }).limit(6).populate('author');
+			author: id,
+		}).sort({ createdAt: -1 }).limit(6).select('-author');
 
 	} catch(err) {
 		return [];
