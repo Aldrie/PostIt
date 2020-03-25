@@ -20,7 +20,7 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 
 	const handleScroll = () => {
 		const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-		if(scrollTop + clientHeight>= (scrollHeight) && !loading) {
+		if(scrollTop + clientHeight>= (scrollHeight - 1) && !loading) {
 			const lastPost = posts[posts.length -1];
 			if(lastPost) {
 				loadPosts(lastPost._id);

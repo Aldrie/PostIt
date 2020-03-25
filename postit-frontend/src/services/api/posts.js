@@ -19,7 +19,7 @@ const createPost = async (content) => {
 };
 
 const loadPostsFromUser = async (id, last) => {
-	return await api.get(`/posts/${id}`, {
+	return await api.get(`/posts/user/${id}`, {
 		params: {
 			last,
 		},

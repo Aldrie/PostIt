@@ -8,6 +8,8 @@ import {
 	createPostSuccess,
 	loadPostSuccess,
 	loadPostFailure,
+	loadUserPostsSuccess,
+	loadUserPostsFailure,
 } from './posts.actions';
 
 import { errorToast, successToast } from 'utils/toast';
@@ -48,8 +50,8 @@ function* handleCreatePost({ payload }) {
 
 export default function* postSaga() {
 	yield all([
-		takeLeading(PostActionTypes.LOAD_POSTS, handleLoadPosts),
 		takeLeading(PostActionTypes.LOAD_POST, handleLoadPost),
+		takeLeading(PostActionTypes.LOAD_POSTS, handleLoadPosts),
 		takeLatest(PostActionTypes.CREATE_POST, handleCreatePost),
 	]);
 }

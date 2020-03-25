@@ -1,20 +1,24 @@
-import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { takeLatest, call, put, delay, all } from 'redux-saga/effects';
 import userService from 'services/api/user';
-import { UserActionTypes, loadUserSuccess, loadUserFailure } from './user.actions';
+import postsService from 'services/api/posts';
+import { UserActionTypes, loadUserSuccess, loadUserFailure, loadUserPostsSuccess, loadUserPostsFailure } from './user.actions';
 import { errorToast } from 'utils/toast';
 
-function* handleLoadUser({ payload }) {
+function* handleLoadUserPosts({ payload }) {
 	try {
-		const response = yield call(userService.loadUser, payload);
-		yield put(loadUserSuccess(response.data));
+		yield delay(2000);
+		const userResponse = yield call(userService.loadUser, payload.id);
+		const postsResponse = yield call(postsService.loadPostsFromUser, payload.id, payload.last);
+		yield put(loadUserPostsSuccess(userResponse.data, postsResponse.data));
 	} catch(err) {
-		yield put(loadUserFailure(err));
-		errorToast('Erro!', 'Erro ao carregar o usuário');
+		errorToast('Erro!', 'Erro ao carregar posts!');
+		yield put(loadUserPostsFailure(err));
+		console.log(err);
 	}
 }
 
 export default function* userSaga() {
 	yield all([
-		takeLatest(UserActionTypes.LOAD_USER, handleLoadUser),
+		takeLatest(UserActionTypes.LOAD_USER_POSTS, handleLoadUserPosts),
 	]);
 }

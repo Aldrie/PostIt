@@ -7,10 +7,6 @@ export const PostActionTypes = {
 	LOAD_POST_SUCCESS: '@POSTS/LOAD_POST_SUCCESS',
 	LOAD_POST_FAILURE: '@POSTS/LOAD_POST_FAILURE',
 
-	LOAD_USER_POSTS: '@POSTS/LOAD_USER_POSTS',
-	LOAD_USER_POSTS_SUCCESS: '@POSTS/LOAD_USER_POSTS_SUCCESS',
-	LOAD_USER_POSTS_FAILURE: '@POSTS/LOAD_USER_POSTS_FAILURE',
-
 	CREATE_POST: '@POST/CREATE',
 	CREATE_POST_SUCCESS: '@POST/CREATE_SUCCESS',
 	CREATE_POST_FAILURE: '@POST/CREATE_FAILURE',
@@ -54,27 +50,6 @@ export const loadPostSuccess = (post) => {
 export const loadPostFailure = (error) => {
 	return {
 		type: PostActionTypes.LOAD_POSTS_FAILURE,
-		payload: error,
-	};
-};
-
-export const loadUserPosts = (user, last) => {
-	return {
-		type: PostActionTypes.LOAD_USER_POSTS,
-		payload: { user, last },
-	};
-};
-
-export const loadUserPostsSuccess = (posts) => {
-	return {
-		type: PostActionTypes.LOAD_USER_POSTS_SUCCESS,
-		payload: posts,
-	};
-};
-
-export const loadUserPostsFailure = (error) => {
-	return {
-		type: PostActionTypes.LOAD_USER_POSTS_FAILURE,
 		payload: error,
 	};
 };

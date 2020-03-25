@@ -23,7 +23,7 @@ export const Header = styled.header`
 `;
 
 export const Avatar = styled.div`
-	background-image: url(${({ src }) => src ? src : emptyAvatar });
+	background-image: url('${({ src }) => src ? src : emptyAvatar }');
 	background-size: cover;
 	border-radius: 100px;
 	min-height: 162px;
@@ -33,11 +33,17 @@ export const Avatar = styled.div`
 
 export const Posts = styled.div`
 	width: 100%;
+	padding: 16px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	padding: 0 32px;
+	justify-content: flex-start;
+	align-items: flex-start;
+	max-height: calc(100vh - 180px);
+	overflow-y: auto;
+
+	@media ${({ theme }) => theme.media.lg} {
+		max-height: calc(60vh - 220px);
+	}
 `;
 
 export const Loading = styled.div`
@@ -46,4 +52,5 @@ export const Loading = styled.div`
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+	height: 24px;
 `;
