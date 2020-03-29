@@ -6,6 +6,7 @@ const INITIAL_STATE = {
 	token: '',
 	loading: false,
 	error: '',
+	theme: 'light',
 };
 
 export default function authReducer(state = INITIAL_STATE, action) {
@@ -28,8 +29,11 @@ export default function authReducer(state = INITIAL_STATE, action) {
 		case AuthActionTypes.LOGIN_FAILURE:
 				return { ...state, loading: false, error: action.payload };
 
+		case AuthActionTypes.CHANGE_THEME:
+			return { ...state, theme: state.theme === 'light' ? 'dark' : 'light' };
+
 		case AuthActionTypes.LOGOUT:
-				return { INITIAL_STATE };
+				return { ...INITIAL_STATE };
 		
 		default:
 			return state;

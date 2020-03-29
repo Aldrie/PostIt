@@ -40,7 +40,7 @@ const PostComponent = ({ history, loadPosts, posts, loading, error }) => {
 		if(posts?.length <= 0) {
 			loadPosts();
 		}
-	}, [loadPosts, posts]);
+	}, []);
 
 	return (
 		<Container>

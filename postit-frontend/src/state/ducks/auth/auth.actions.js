@@ -7,7 +7,8 @@ export const AuthActionTypes = {
 	LOGIN_SUCCESS: '@AUTH/LOGIN_SUCCESS',
 	LOGIN_FAILURE: '@AUTH/LOGIN_FAILURE',
 
-	LOGOUT: '@AUTH/LOGOUT'
+	CHANGE_THEME: '@AUTH/CHANGE_THEME',
+	LOGOUT: '@AUTH/LOGOUT',
 	
 };
 
@@ -50,6 +51,12 @@ export const loginFailure = (error) => {
 	return {
 		type: AuthActionTypes.LOGIN_FAILURE,
 		payload: error,
+	};
+}
+
+export const changeTheme = (error) => {
+	return {
+		type: AuthActionTypes.CHANGE_THEME,
 	};
 }
 

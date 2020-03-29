@@ -18,8 +18,7 @@ exports.createUserMulterConfig = {
 			crypto.randomBytes(6, (error, hash) => {
 				if (error) callBack(error);
 				
-				const fileName = `${hash.toString('hex')}-${new Date().getTime()}-${file.originalname}`;
-
+				const fileName = `${hash.toString('hex')}-${new Date().getTime()}-${file.originalname.replace(/\s/g, '_')}`;
 				callBack(null, fileName);
 			});
 		},

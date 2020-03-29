@@ -36,7 +36,7 @@ function* handleLogin({ payload }) {
 		yield put(loginSuccess({ name, avatar, token }));
 	}	catch(error) {
 		yield put(loginFailure(error));
-		if(error.response.status === 404) {
+		if(error?.response?.status === 404) {
 			errorToast('Erro!', 'Usuário inválido!');
 		}else {
 			errorToast('Erro!', 'Erro ao entrar, tente novamente!');
