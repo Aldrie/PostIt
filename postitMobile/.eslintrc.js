@@ -20,13 +20,18 @@ module.exports = {
   plugins: [
     'react',
   ],
+  parser: "babel-eslint",
   rules: {
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": "off",
   },
-  "import/resolver": {
-    "babel-plugin-root-import":  {
-      "rootPathPrefix": "~",
-      "rootPathSuffix": "src"
+  settings: {
+    "import/resolver": {
+      "babel-plugin-root-import": {
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src"
+      }
     }
   }
 };

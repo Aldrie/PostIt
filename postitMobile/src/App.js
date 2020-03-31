@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import Routes from './Routes';
 
 const App = () => (
-  <View>
-    <Text>AAA</Text>
-  </View>
+  <Routes />
 );
 export default App;
