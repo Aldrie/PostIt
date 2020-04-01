@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '~/components/Button';
-import AuthLayout from '../../layouts/Auth';
+import AuthLayout from '~/layouts/Auth';
 import Input from '~/components/Input';
 
 const RegisterComponent = ({ navigation }) => {
@@ -33,7 +33,7 @@ const RegisterComponent = ({ navigation }) => {
         placeholder="senha"
         color="primary"
         password
-        marginBottom="16"
+        marginBottom="24"
       />
       <Button text="Registro" color="primary" />
     </AuthLayout>

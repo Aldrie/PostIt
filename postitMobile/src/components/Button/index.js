@@ -2,7 +2,7 @@ import React, { useContext, memo } from 'react';
 import { ThemeContext } from 'styled-components';
 
 import { Container, Gradient } from './styles';
-import { Text } from '~/components/Text/styles';
+import Text from '~/components/Text';
 
 const Button = ({
   text, color, textSize, children, ...rest

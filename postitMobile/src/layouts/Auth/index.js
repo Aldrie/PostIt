@@ -4,7 +4,11 @@ import { ThemeContext } from 'styled-components';
 
 import Text from '~/components/Text';
 import {
-  Container, Form, Header, Presentation, BottomText,
+  Container,
+  Form,
+  Header,
+  Presentation,
+  BottomText,
 } from './styles';
 
 const AuthLayout = ({
@@ -29,8 +33,8 @@ const AuthLayout = ({
           </Text>
         </BottomText>
       </Form>
-
     </Container>
+
   );
 };
 

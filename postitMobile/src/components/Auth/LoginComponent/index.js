@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '~/components/Button';
-import AuthLayout from '../../layouts/Auth';
+import AuthLayout from '~/layouts/Auth';
 import Input from '~/components/Input';
 
 const LoginComponent = ({ navigation }) => {
@@ -27,7 +27,7 @@ const LoginComponent = ({ navigation }) => {
         placeholder="senha"
         color="secondary"
         password
-        marginBottom="16"
+        marginBottom="24"
       />
       <Button text="Login" color="secondary" />
     </AuthLayout>

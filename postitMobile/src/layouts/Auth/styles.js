@@ -22,7 +22,7 @@ export const Presentation = styled.View`
 export const Form = styled.View`
   flex: 1;
   justify-content: flex-start;
-  padding: 0 32px;
+  padding: 0 42px;
 `;
 
 export const BottomText = styled.TouchableOpacity`
