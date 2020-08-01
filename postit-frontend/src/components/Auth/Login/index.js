@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import { MdEmail, MdLock } from 'react-icons/md'
 
 import Button from 'components/Button';
@@ -9,8 +9,11 @@ import {
 	Title,
 	Form,
 } from '../styles';
+import { useEffect } from 'react';
 
 const Login = ({ login, loading, error }) => {
+
+	const emailInput = useRef(null);
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -19,6 +22,10 @@ const Login = ({ login, loading, error }) => {
 		event.preventDefault();
 		login(email, password);
 	};
+
+	useEffect(() => {
+		console.log(emailInput.current)
+	}, []);
 
 	return(
 		<>
@@ -31,8 +38,10 @@ const Login = ({ login, loading, error }) => {
 					placeholder="email"
 					icon={MdEmail}
 					onChange={(event) => setEmail(event.target.value)}
+					
 				/>
 				<Input
+				ref={emailInput}
 					type="password"
 					placeholder="password"
 					icon={MdLock}

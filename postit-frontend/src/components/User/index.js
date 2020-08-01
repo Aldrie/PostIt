@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useRef } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 
 import { ThemeContext } from 'styled-components';
 import { BeatLoader } from 'react-spinners';
@@ -25,6 +25,7 @@ const User = ({
 }) => {
 	const scrollRef = useRef(null);
 	const theme = useContext(ThemeContext);
+	const history = useHistory();
 
 	const { id } = useParams();
 
@@ -37,6 +38,10 @@ const User = ({
 			}
 		}
 	};
+
+	const handlePostClick = (id) => {
+		history.push(`/posts/${id}`);
+	}
 
 	useEffect(() => {
 		loadPosts(id);
@@ -53,7 +58,7 @@ const User = ({
 
 			<Posts ref={scrollRef} onScroll={handleScroll}>
 				{posts && posts.map(post => 
-					<Post key={post._id} author={user} content={post.content}/>)
+					<Post key={post._id} author={user} content={post.content} onClick={() => handlePostClick(post._id)}/>)
 				}
 			</Posts>
 			{loading && 

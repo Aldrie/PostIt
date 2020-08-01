@@ -18,7 +18,7 @@ function App() {
 
 	useEffect(() => {
 		setTheme(store.getState().auth.theme);
-		window.changeTheme = () => {
+		window.toggleTheme = () => {
 			store.dispatch(changeTheme());
 			setTheme(store.getState().auth.theme);
 		};

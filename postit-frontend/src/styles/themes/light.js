@@ -1,4 +1,5 @@
 const theme = {
+	name: 'light',
 	primary: '#225E8D',
 	secondary: '#00AEA1',
 	tertiary:  '#D874AA',

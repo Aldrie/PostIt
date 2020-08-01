@@ -4,7 +4,7 @@ import { ThemeContext } from 'styled-components';
 
 import { Container, Input, IconButton, StartIcon } from './styles';
 
-const InputComponent = ({ icon: Icon,...rest }) => {
+const InputComponent = ({ icon: Icon, ref,...rest}) => {
 	const theme = useContext(ThemeContext);
 	const [show, setShow] = useState(false);
 
@@ -19,7 +19,7 @@ const InputComponent = ({ icon: Icon,...rest }) => {
 					<Icon color={theme.primary}/>
 				</StartIcon>
 			}
-			<Input {...rest} type={rest.type === 'password' ? show ? 'text' : 'password' : rest.type } />
+			<Input {...rest} ref={ref} type={rest.type === 'password' ? show ? 'text' : 'password' : rest.type } />
 			{rest.type === 'password' && 
 				<IconButton onClick={handleShowClick}>
 					{show ? <IoMdEye size={25} color={theme.primary}/>

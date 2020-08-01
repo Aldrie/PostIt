@@ -1,4 +1,5 @@
 const theme = {
+	name: 'dark',
 	primary: '#8EBEF3',
 	secondary: '#00AEA1',
 	tertiary:  '#D874AA',

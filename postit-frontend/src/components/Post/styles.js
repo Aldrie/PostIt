@@ -13,7 +13,7 @@ export const Container = styled.div`
 	padding: 4px 16px;
 	border-radius: 20px;
 	margin-bottom: 16px;
-	box-shadow: 0 0 12px ${({ theme }) => hexToRgba(theme.text.contrast, .3)};
+	box-shadow: 0 0 12px ${({ theme }) => theme.name === 'light' ? hexToRgba(theme.text.contrast, .3) : 'rgba(0, 0, 0, .2)'};
 
 	@media ${({ theme }) => theme.media.lg} {
 		width: 100%;
